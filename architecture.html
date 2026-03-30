@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcane | Modern Architecture</title>
+    <style>
+        /* General Reset & Smooth Scroll */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+
+        /* Navbar - Fixed for better UX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color:dodgerblue;
+            font-weight:bold;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: dodgerblue;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: #fff;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-content span {
+            color: #888;
+        }
+       .hero-image {
+            flex: 1;
+            height: 70vh;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #444;
+        }
+
+        /* Philosophy Section */
+        .philosophy {
+            padding: 120px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .phil-text { flex: 1; min-width: 320px; }
+        .phil-text span { text-transform: uppercase; color: #888; font-size: 0.8rem; letter-spacing: 2px; }
+        .phil-text h2 { font-size: 2.5rem; margin: 20px 0; font-weight: 400; line-height: 1.2; }
+
+        .stats { display: flex; gap: 40px; flex-wrap: wrap; }
+        .stat-item strong { font-size: 2.5rem; display: block; border-bottom: 2px solid #1a1a1a; width: fit-content; }
+        .stat-item p { font-size: 0.8rem; text-transform: uppercase; margin-top: 10px; color: #666; }
+
+        /* Projects Grid */
+        .projects { padding: 100px 5%; }
+        .projects h2 { margin-bottom: 3rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .img-container {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .project-card:hover img { transform: scale(1.1); }
+
+        .overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: white;
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-card h3 { margin-top: 1.5rem; font-weight: 500; font-size: 1.1rem; }
+
+        /* Services Section */
+        .services {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+
+        .service-box h4 { margin-bottom: 20px; font-size: 1rem; border-bottom: 1px solid #444; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
+        .service-box p { color: #aaa; font-size: 0.9rem; font-weight: 300; }
+
+        /* Testimonial Section (New) */
+        .testimonial {
+            padding: 100px 5%;
+            text-align: center;
+            background: #f1f1f1;
+        }
+
+        .testimonial blockquote {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-style: italic;
+            color: #444;
+        }
+
+        .testimonial cite {
+            display: block;
+            margin-top: 20px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-style: normal;
+            color: #888;
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 5% 50px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .footer-bottom {
+            margin-top: 80px;
+            font-size: 0.7rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* Add a hamburger menu here later */
+            .philosophy { padding: 60px 5%; }
+            .hero-content h1 { font-size: 3rem; }
+            .img-container { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+        <img src="logo.png" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black">reality</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="architecture.html" class="active">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="feedback.html">Feedback</a>
+        
+
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <h1>Designing Spaces <br> <span>Defining Eras.</span></h1>
+            <p>A minimalist approach to structural integrity and aesthetic harmony.</p>
+            <a href="#projects" class="btn">View Projects</a>
+        </div>
+        <div class="hero-image"><img src="imgs.jpg" alt="Hero Image" width="500px" height="400px">
+                </div>
+    </header>
+
+    <section class="philosophy">
+        <div class="phil-text">
+            <span>Our Philosophy</span>
+            <h2>Sustainability meets <br> Brutalist beauty.</h2>
+            <p>We believe that a building should not just occupy space, but converse with its environment. Our designs prioritize natural light, raw materials, and long-term ecological impact.</p>
+        </div>
+        <div class="stats">
+            <div class="stat-item"><strong>12+</strong><p>Years Experience</p></div>
+            <div class="stat-item"><strong>150+</strong><p>Projects Delivered</p></div>
+            <div class="stat-item"><strong>09</strong><p>Design Awards</p></div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Selected Works</h2>
+        <div class="grid">
+            <div class="project-card">
+                <div class="img-container">
+                    <img src="img1.jpg" alt="Concrete Pavilion">
+                    <div class="overlay"><span>Residential</span></div>
+                </div>
+                <h3>The Concrete Pavilion</h3>
+            </div>
+            <div class="project-card">
+                <div class="img-container">
+                    <img src="img2.jpg" alt="Glass Residence">
+                    <div class="overlay"><span>Modernist</span></div>
+                </div>
+                <h3>Glass Residence</h3>
+            </div>
+            <div class="project-card">
+                <div class="img-container">
+                    <img src="img3.jpg" alt="Urban Monolith">
+                    <div class="overlay"><span>Commercial</span></div>
+                </div>
+                <h3>Urban Monolith</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <blockquote>"Architecture should speak of its time and place, but yearn for timelessness."</blockquote>
+        <cite>— Lead Architect, Frank K. Arcane</cite>
+    </section>
+
+    <section id="services" class="services">
+        <div class="service-box">
+            <h4>01. Architectural Design</h4>
+            <p>From conceptual sketches to full construction blueprints, we handle every detail with precision.</p>
+        </div>
+        <div class="service-box">
+            <h4>02. Interior Curation</h4>
+            <p>Bespoke furniture and spatial planning that complements the exterior shell and enhances livability.</p>
+        </div>
+        <div class="service-box">
+            <h4>03. Urban Planning</h4>
+            <p>Large-scale projects designed to revitalize city centers and create meaningful public spaces.</p>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <h2>Start a Project</h2>
+            <p>Have a vision in mind? Let's build it together.</p>
+            <a href="contact.html" class="btn">Get In Touch</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ARCANE Architecture Studio. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

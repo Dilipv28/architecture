@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Net-Zero Housing | Studio Excellence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #fdfdfb; color: #2d332d; line-height: 1.6; }
+
+        /* Navigation */
+        nav {
+            padding: 30px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: rgba(253, 253, 251, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+        .nav-logo { font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 0.9rem; }
+        .nav-links a { text-decoration: none; color: #2d332d; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-left: 30px; opacity: 0.6; transition: 0.3s; }
+        .nav-links a:hover { opacity: 1; }
+
+        /* Header */
+        .sustainable-header {
+            padding: 80px 10% 60px;
+            text-align: center;
+        }
+
+        .prize-seal {
+            width: 130px;
+            height: 130px;
+            border: 1px solid #90a955;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            color: #90a955;
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-align: center;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .sustainable-header h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 300; margin-bottom: 20px; letter-spacing: -2px; }
+        .sustainable-header p { color: #90a955; text-transform: uppercase; letter-spacing: 4px; font-weight: 600; font-size: 0.8rem; }
+
+        /* Metrics */
+        .metrics-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            text-align: center;
+            background: #2d332d;
+            color: #fff;
+            padding: 60px 10%;
+            margin: 40px 0;
+        }
+        .metric-item h4 { color: #90a955; font-size: 2.5rem; font-weight: 300; }
+        .metric-item span { font-size: 0.65rem; text-transform: uppercase; color: #888; letter-spacing: 2px; }
+
+        /* Narrative Section */
+        .narrative {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+        .narrative h2 { font-size: 2rem; font-weight: 400; margin-bottom: 20px; color: #1a1a1a; }
+        .narrative p { color: #555; margin-bottom: 20px; font-size: 1.1rem; }
+
+        /* Innovation Grid */
+        .innovation-grid {
+            padding: 80px 10%;
+            background: #f4f4f2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .info-card { border-top: 1px solid #ccc; padding-top: 20px; }
+        .info-card h5 { text-transform: uppercase; font-size: 0.8rem; margin-bottom: 15px; color: #90a955; }
+        .info-card p { font-size: 0.9rem; color: #666; }
+
+        /* Gallery */
+        .image-gallery {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 80px 10%;
+        }
+        .img-large { height: 600px; background: url('https://images.unsplash.com/photo-1518005020250-68a040d73f12?auto=format&fit=crop&q=80&w=1000') center/cover; }
+        .img-small { height: 600px; background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80&w=800') center/cover; }
+
+        /* Footer */
+        footer { 
+            padding: 100px 10% 60px; 
+            text-align: center; 
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+        .footer-nav { margin-bottom: 40px; }
+        .footer-copy { font-size: 0.65rem; opacity: 0.5; text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 850px) {
+            .narrative, .metrics-bar, .image-gallery { grid-template-columns: 1fr; }
+            .metrics-bar { gap: 40px; }
+            .image-gallery div { height: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-logo">Studio Excellence</div>
+        <div class="nav-links">
+            <a href="#">Projects</a>
+            <a href="#">Philosophy</a>
+            <a href="#">Awards</a>
+            <a href="#">Contact</a>
+        </div>
+    </nav>
+
+    <header class="sustainable-header">
+        <div class="prize-seal">Sustainable<br>Practice<br>Prize</div>
+        <p>Innovation in Residential Design</p>
+        <h1>Net-Zero Housing: <br> A Living Ecosystem.</h1>
+    </header>
+
+    <section class="metrics-bar">
+        <div class="metric-item">
+            <h4>0.00</h4>
+            <span>Net Operational Carbon</span>
+        </div>
+        <div class="metric-item">
+            <h4>100%</h4>
+            <span>Renewable Energy reliance</span>
+        </div>
+        <div class="metric-item">
+            <h4>4.2k</h4>
+            <span>Litres Greywater Recycled</span>
+        </div>
+    </section>
+
+    <section class="narrative">
+        <div>
+            <h2>The Challenge of <br> Permanence.</h2>
+            <p>Commissioned in 2019, the Net-Zero Housing initiative was designed to challenge the obsolescence of modern building materials. Our goal was to create a structure that didn't just "do no harm," but actively contributed to its local micro-climate.</p>
+        </div>
+        <div>
+            <p>Utilizing a combination of Cross-Laminated Timber (CLT) and photobioreactive algae facades, the building achieves thermal mass efficiency that exceeds standard insulation by 40%. The result is a residential complex that breathes, evolving with the seasons.</p>
+        </div>
+    </section>
+
+    <section class="image-gallery">
+        <div class="img-large"></div>
+        <div class="img-small"></div>
+    </section>
+
+    <section class="innovation-grid">
+        <div class="info-card">
+            <h5>Passive Solar Orientation</h5>
+            <p>Optimized building geometry to maximize winter solar gain while providing 100% natural shading during peak summer hours.</p>
+        </div>
+        <div class="info-card">
+            <h5>Circular Materials</h5>
+            <p>90% of the interior finishes are derived from mycelium-based composites and reclaimed industrial timber.</p>
+        </div>
+        <div class="info-card">
+            <h5>Smart-Grid Integration</h5>
+            <p>Excess energy generated by the rooftop solar kinetic array is redistributed back to the municipal grid, powering 15 neighboring homes.</p>
+        </div>
+        <div class="info-card">
+            <h5>Biodiversity Roof</h5>
+            <p>A 500sqm rooftop garden designed to support local pollinator species and reduce the urban heat island effect.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-nav">
+            <a href="#" style="color: #90a955; text-decoration: none; font-weight: 700;">Back to Awards Index</a>
+        </div>
+        <div class="footer-copy">
+            Studio Excellence Architecture &copy; 2026 | New York • London • Berlin
+        </div>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Forest HQ | AIA Innovation Award</title>
+    <style>
+        :root {
+            --primary-green: #4f772d;
+            --dark-bg: #121212;
+            --text-light: #f1f1f1;
+            --accent: #90a955;
+            --transition: all 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 5%;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .hero-content {
+            width: 50%;
+            padding: 0 5%;
+            z-index: 2;
+        }
+
+        .award-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-weight: 700;
+            color: var(--primary-green);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1590059132718-56829df18bca?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        /* --- Innovation Section --- */
+        .innovation-details {
+            padding: 150px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .details-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .details-text p {
+            color: #aaa;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .stat-card {
+            background: #1a1a1a;
+            padding: 40px;
+            border-bottom: 4px solid var(--primary-green);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--accent);
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #888;
+        }
+
+        /* --- Quote Section --- */
+        .quote-section {
+            background-color: var(--primary-green);
+            padding: 120px 5%;
+            text-align: center;
+        }
+
+        .quote-section blockquote {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            max-width: 1000px;
+            margin: 0 auto;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        /* --- CTA Section --- */
+        .footer-cta {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 20px 40px;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: white;
+            color: black;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 968px) {
+            .hero-content { width: 100%; text-align: center; background: rgba(0,0,0,0.6); height: 100%; display: flex; flex-direction: column; justify-content: center;}
+            .hero-image { width: 100%; clip-path: none; opacity: 0.4; }
+            .innovation-details { grid-template-columns: 1fr; padding: 80px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">ARCANE STUDIO</div>
+        <div class="nav-links">
+            <a href="#about">The Concept</a>
+            <a href="#stats">Innovation</a>
+            <a href="#contact">Inquire</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="award-badge">2026 AIA Innovation Award Winner</div>
+            <h1>Vertical <span>Forest HQ.</span></h1>
+            <p style="color: #ccc; max-width: 500px; margin-bottom: 2rem;">Redefining the urban workspace through biological integration and structural honesty. A living breathing organism in the heart of the city.</p>
+            <a href="#about" class="btn">Explore Design</a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <section class="innovation-details" id="about">
+        <div class="details-text">
+            <h2>Architectural Symbiosis</h2>
+            <p>The Vertical Forest HQ serves as a prototype for the future of urban architecture. By hosting over 20,000 plants and trees across its facade, the structure actively filters CO2 and regulates micro-climates.</p>
+            <p>This project was honored with the <strong>AIA Innovation Award</strong> for its breakthrough in gravity-defying irrigation systems and bio-diverse facade engineering.</p>
+        </div>
+        <div class="stats-grid" id="stats">
+            <div class="stat-card">
+                <h3>850</h3>
+                <p>Trees Integrated</p>
+            </div>
+            <div class="stat-card">
+                <h3>30%</h3>
+                <p>Energy Reduction</p>
+            </div>
+            <div class="stat-card">
+                <h3>15k</h3>
+                <p>Sqm of Vegetation</p>
+            </div>
+            <div class="stat-card">
+                <h3>00</h3>
+                <p>Net Carbon Footprint</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote>"We don't just build on the earth; we invite the earth back into the building."</blockquote>
+        <p style="margin-top: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">— Lead Architect, Frank K. Arcane</p>
+    </section>
+
+    <section class="footer-cta" id="contact">
+        <h2>Ready to build the future?</h2>
+        <p style="margin-bottom: 40px; color: #888;">Join us in the next evolution of sustainable living.</p>
+        <a href="mailto:design@arcane.com" class="btn">Start a Conversation</a>
+        <p style="margin-top: 80px; font-size: 0.6rem; color: #444; letter-spacing: 2px;">&copy; 2026 ARCANE ARCHITECTURE STUDIO. ALL RIGHTS RESERVED.</p>
+    </section>
+
+</body>
+</html>

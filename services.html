@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Apti Architecture</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff;
+            color: #1a1a1a;
+            line-height: 1.7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+            
+        
+        /* Navbar - Fixed for better UX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color:dodgerblue;
+            font-weight:bold;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: dodgerblue;
+        }
+        /* Header Section */
+        .services-header {
+            padding: 150px 0 60px;
+            text-align: center;
+        }
+
+        .services-header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .services-header p {
+            max-width: 700px;
+            margin: 0 auto;
+            color: #888;
+            font-size: 1.1rem;
+        }
+
+        /* Service Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 60px 0;
+        }
+
+        .service-item {
+            padding: 40px;
+            background: #f9f9f9;
+            transition: 0.3s;
+            border-top: 4px solid transparent;
+        }
+
+        .service-item:hover {
+            background: #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            border-top: 4px solid dodgerblue;
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .service-item p {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Technical Capabilities Section (New) */
+        .capabilities {
+            padding: 80px 0;
+            background: #f4f4f4;
+        }
+        
+        .cap-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .cap-box {
+            background: white;
+            padding: 30px;
+            border-radius: 4px;
+        }
+
+        .cap-box h4 {
+            color: dodgerblue;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        .method-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .method-title h2 { font-size: 2.5rem; font-weight: 300; }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px 40px;
+        }
+
+        .method-step {
+            position: relative;
+        }
+
+        .method-step span {
+            font-size: 5rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.05);
+            position: absolute;
+            top: -40px;
+            left: 0;
+        }
+
+        .method-step h4 {
+            position: relative;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .method-step p {
+            font-size: 0.85rem;
+            color: #aaa;
+        }
+
+        /* CTA & Footer */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #1a1a1a;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: dodgerblue;
+        }
+
+        .footer {
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 20px; }
+            .services-header h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+       <nav class="navbar">
+        <div class="logo-container">
+        <img src="logo.png" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black">reality</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="architecture.html" >Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html"class="active">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="feedback.html">Feedback</a>
+         </div>
+    </nav>
+        <section class="services-header">  
+            <h1>Tailored Solutions</h1>
+            <p>Our multidisciplinary team bridges the gap between creative imagination and technical precision, offering end-to-end support for projects of any scale.</p>
+        </section>
+
+        <section class="services-grid">
+            <div class="service-item">
+                <span class="service-icon">🏗️</span>
+                <h3>Architectural Design</h3>
+                <p>Conceptualizing structures that harmonize with their surroundings while pushing the boundaries of modern form and function.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🏠</span>
+                <h3>Custom Residential</h3>
+                <p>Creating private sanctuaries that reflect personal narratives, utilizing high-performance materials and bespoke spatial planning.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🏢</span>
+                <h3>Commercial & Retail</h3>
+                <p>Designing goal-oriented environments that enhance brand identity and optimize workflow for modern businesses.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🌿</span>
+                <h3>Sustainability Strategy</h3>
+                <p>Implementing net-zero energy solutions, rainwater harvesting, and passive cooling systems to minimize carbon footprints.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🛋️</span>
+                <h3>Interior Curation</h3>
+                <p>Bridging the exterior and interior with custom furniture, lighting design, and material palettes that evoke emotion.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🏙️</span>
+                <h3>Urban Revitalization</h3>
+                <p>Working with communities to breathe new life into aging urban fabric through smart planning and public space design.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">📐</span>
+                    <h3>Project Management</h3>
+                    <p>From initial concept to final construction, we oversee every detail to ensure your vision is realized on time and within budget.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🎨</span>
+                <h3>Design Consultation</h3>
+                <p>Expert guidance to help you navigate the complexities of architectural design and make informed decisions throughout the project lifecycle.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">🔍</span>
+                <h3>Feasibility Studies</h3>
+                <p>Comprehensive analysis of site conditions, zoning regulations, and budget constraints to ensure project viability from the outset.</p>
+            </div>
+            <div class="service-item">
+                <span class="service-icon">💰</span>
+                <h3>Cost Estimation</h3>
+                <p>Accurate budgeting and cost analysis to keep your project financially viable from conception to completion.</p>
+            </div>
+             <div class="service-item">
+                <span class="service-icon">📋</span>
+                <h3>Construction Documentation</h3>
+                <p>Detailed blueprints and specifications that ensure seamless communication between architects, engineers, and contractors.</p>
+            </div>
+                <div class="service-item">
+                    <span class="service-icon">👷</span>
+                    <h3>Site Supervision</h3>
+                    <p>Regular site visits to monitor construction progress, ensure quality control, and address any issues that arise.</p> 
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">📑</span>
+                    <h3>Regulatory Compliance</h3>
+                    <p>Ensuring all designs meet local building codes, zoning laws, and accessibility standards for a smooth approval process.</p>
+                </div>
+                 <div class="service-item">
+                    <span class="service-icon">🔧</span>
+                    <h3>Post-Occupancy Evaluation</h3>
+                    <p>Assessing the performance of our designs in real-world conditions to inform future projects and ensure client satisfaction.</p>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🤝</span>
+                    <h3>Client Collaboration</h3>
+                    <p>We prioritize open communication and collaboration to ensure your vision is at the heart of every design decision.</p>
+                </div>
+            </section> 
+        </div>
+
+    <section class="capabilities">
+        <div class="container">
+            <h2 style="font-weight: 300; text-align: center;">Technical Capabilities</h2>
+            <div class="cap-grid">
+                <div class="cap-box">
+                    <h4>BIM Modeling</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Using Revit to ensure perfect coordination between structural, mechanical, and electrical systems.</p>
+                </div>
+                <div class="cap-box">
+                    <h4>VR Walkthroughs</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Step inside your project before it's built with our immersive virtual reality design reviews.</p>
+                </div>
+                <div class="cap-box">
+                    <h4>Drone Site Analysis</h4>
+                    <p style="font-size: 0.9rem; color: #666;">High-resolution aerial surveys for precise site planning and construction progress tracking.</p>
+                </div>
+                <div class="cap-box">
+                    <h4>Parametric Design</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Leveraging Grasshopper to create complex geometries that optimize performance and aesthetics.</p>
+                </div>
+                <div class="cap-box">
+                    <h4>Energy Modeling</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Using tools like EnergyPlus to simulate building performance and inform sustainable design strategies.</p>
+                </div>
+                <div class="cap-box">
+                    <h4>3D Printing</h4>
+                    <p style="font-size: 0.9rem; color: #666;">Creating detailed physical models for client presentations and design development.</p>
+                </div>
+                    <div class="cap-box">
+                        <h4>Structural Analysis</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Ensuring the integrity of our designs with advanced structural analysis software like SAP2000.</p>
+                    </div>
+                    <div class="cap-box">
+                        <h4>Material Simulation</h4>
+                        <p style="font-size: 0.9rem; color: #666;">Testing material performance under various conditions to inform our design choices.</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="methodology">
+        <div class="container">
+            <div class="method-title">
+                <h2>The Apti Workflow</h2>
+                <p style="color: #666; margin-top: 10px;">How we turn your aspirations into blueprints.</p>
+            </div>
+            <div class="method-grid">
+                <div class="method-step">
+                    <span>1</span>
+                    <h4>Discovery</h4>
+                    <p>We analyze site topography, sunlight patterns, and client requirements to build a solid project foundation.</p>
+                </div>
+                <div class="method-step">
+                    <span>2</span>
+                    <h4>Schematic Concept</h4>
+                    <p>Initial sketches and 3D massing studies explore volume and orientation to find the design's "soul".</p>
+                </div>
+                <div class="method-step">
+                    <span>3</span>
+                    <h4>Design Refinement</h4>
+                    <p>Detailed selection of materials and finishes, ensuring aesthetic consistency across every square foot.</p>
+                </div>
+                <div class="method-step">
+                    <span>4</span>
+                    <h4>Documentation</h4>
+                    <p>Precision-engineered blueprints that meet international building codes and streamline the bidding process.</p>
+                </div>
+                <div class="method-step">
+                    <span>5</span>
+                    <h4>Admin & Oversight</h4>
+                    <p>Regular site visits to ensure contractors adhere to the architectural intent and quality standards.</p>
+                </div>
+                <div class="method-step">
+                    <span>6</span>
+                    <h4>Project Handover</h4> 
+                    <p>Final inspections and documentation delivery to ensure a smooth transition into your new space.</p>
+                </div>
+                <div class="method-step">
+                    <span>7</span>
+                    <h4>Post-Occupancy Support</h4>
+                    <p>We offer ongoing support to address any issues and ensure your space continues to perform as intended.</p>
+                </div>
+                <div class="method-step">
+                    <span>8</span>
+                    <h4>Client Collaboration</h4>
+                    <p>We prioritize open communication and collaboration to ensure your vision is at the heart of every design decision.</p>
+                </div>
+                <div class="method-step">
+                    <span>9</span>
+                    <h4>Feasibility Studies</h4>
+                    <p>Comprehensive analysis of site conditions, zoning regulations, and budget constraints to ensure project viability from the outset.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2 style="font-weight: 300; margin-bottom: 20px;">Ready to Start Your Journey?</h2>
+            <p style="color: #888; margin-bottom: 30px;">Book a free 30-minute introductory consultation with our design team.</p>
+            <a href="contact.html" class="btn">Inquire Now</a>  
+        </div>
+    </section>
+    
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Apti Architecture Studio. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html> 

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Apti Architecture</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: dodgerblue;
+            --bg-light: #f9f9f9;
+            --text-muted: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #fff; color: var(--primary); line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+       
+        /* Navbar - Fixed for better UX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color:dodgerblue;
+            font-weight:bold;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: dodgerblue;
+        }
+        /* Hero Section */
+        .about-hero { padding: 120px 0 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-hero h1 { font-size: 4rem; font-weight: 300; line-height: 1.1; margin-bottom: 20px; }
+        .about-hero p { font-size: 1.2rem; color: #555; }
+        .hero-img { width: 100%; height: 500px; background: #eee; overflow: hidden; }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Philosophy / Values */
+        .philosophy { padding: 100px 0; background: var(--bg-light); text-align: center; }
+        .philosophy h2 { font-size: 2.5rem; font-weight: 300; margin-bottom: 50px; }
+        .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .value-box h3 { font-size: 1rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 15px; color: var(--accent); }
+        .value-box p { font-size: 0.9rem; color: #666; }
+
+        /* Timeline / History */
+        .history { padding: 100px 0; }
+        .timeline-item { display: flex; gap: 40px; margin-bottom: 40px; border-left: 2px solid #eee; padding-left: 30px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -7px; top: 0; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+        .year { font-weight: 800; font-size: 1.2rem; color: var(--primary); min-width: 60px; }
+        .event h4 { margin-bottom: 5px; }
+        .event p { color: #888; font-size: 0.9rem; }
+
+        /* Team Grid */
+        .team { padding: 100px 0; background: var(--primary); color: #fff; }
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 50px; }
+        .member { text-align: left; }
+        .member-img { width: 100%; aspect-ratio: 4/5; background: #333; margin-bottom: 15px; filter: grayscale(100%); transition: 0.4s; }
+        .member:hover .member-img { filter: grayscale(0%); }
+        .member h4 { font-size: 1.1rem; font-weight: 500; }
+        .member span { font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+
+        .footer { padding: 40px 0; text-align: center; font-size: 0.75rem; color: var(--text-muted); border-top: 1px solid #eee; }
+
+        @media (max-width: 850px) {
+            .about-hero, .values-grid { grid-template-columns: 1fr; }
+            .about-hero h1 { font-size: 2.8rem; }
+        }
+        /* New Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Design Lab Section */
+        .design-lab {
+            padding: 100px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .lab-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            font-weight: 300;
+        }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
+
+        /* Sustainability Section */
+        .stewardship {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 100px 0;
+        }
+
+        .steward-content {
+            max-width: 800px;
+        }
+
+        .certification-logos {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+            opacity: 0.5;
+            filter: grayscale(1);
+        }
+
+        /* Awards Table */
+        .awards-section {
+            padding: 100px 0;
+        }
+
+        .awards-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 40px;
+        }
+
+        .awards-table tr {
+            border-bottom: 1px solid #eee;
+        }
+
+        .awards-table td {
+            padding: 25px 0;
+            font-size: 0.95rem;
+        }
+
+        .award-year {
+            width: 100px;
+            color: var(--text-muted);
+        }
+
+        .award-name {
+            font-weight: 500;
+        }
+
+        .award-project {
+            text-align: right;
+            color: var(--accent);
+            font-style: italic;
+        }
+        .award-project a{
+            text-decoration: none;
+            color: var(--accent);
+            transition: 0.3s;   
+        }
+    </style>
+</head>
+<body>
+ <nav class="navbar">
+        <div class="logo-container">
+        <img src="logo.png" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black">reality</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="architecture.html" >Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="about.html"class="active">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="feedback.html">Feedback</a>
+        </div>
+    </nav>
+        <section class="about-hero">
+            <div class="hero-text">
+                <h1>Shaping Space.<br>Defining Time.</h1>
+                <p>Founded on the belief that architecture is a dialogue between nature and the built environment, Apti Studio has spent over a decade crafting structures that inspire.</p>
+            </div>
+            <div class="hero-img">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80" alt="Studio Space">
+            </div>
+        </section>
+    </div>
+
+    <section class="philosophy">
+        <div class="container">
+            <h2>Our Core Principles</h2>
+            <div class="values-grid">
+                <div class="value-box">
+                    <h3>Integrity</h3>
+                    <p>We honor the materials we use and the landscapes we occupy, ensuring every joint and beam serves a purpose.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Innovation</h3>
+                    <p>Leveraging BIM and computational design to solve complex spatial puzzles with elegant simplicity.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Humanity</h3>
+                    <p>Buildings are for people. We prioritize light, air, and movement to enhance the daily human experience.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Sustainability</h3>
+                    <p>From passive solar design to regenerative materials, we aim to leave a positive footprint on the planet.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Collaboration</h3>
+                    <p>Architecture is a team sport. We foster open communication and respect across all disciplines.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Craftsmanship</h3>
+                    <p>We believe in the beauty of well-executed details, where form and function meet in perfect harmony.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Context</h3>
+                    <p>Every project is a response to its environment, culture, and history. We design with a sense of place.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Resilience</h3>
+                    <p>Our buildings are designed to endure, adapting to changing climates and evolving needs.</p>
+                </div>
+                <div class="value-box">
+                    <h3>Integrity</h3>
+                    <p>We honor the materials we use and the landscapes we occupy, ensuring every joint and beam serves a purpose.</p>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="history">
+        <div class="container">
+            <h2 style="font-weight: 300; margin-bottom: 50px;">A Decade of Growth</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">2014</div>
+                    <div class="event">
+                        <h4>The Foundation</h4>
+                        <p>Apti Architecture is founded in a small Brooklyn loft with a mission to simplify urban living.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2018</div>
+                    <div class="event">
+                        <h4>Going Green</h4>
+                        <p>We received our first LEED Platinum certification for the 'Green Glass' commercial project in Manhattan.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="year">2026</div>
+                    <div class="event">
+                        <h4>Global Reach</h4>
+                        <p>Opening our third international studio and launching our Digital Twin design division.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2 style="font-weight: 300;">The Design Minds</h2>
+            <div class="team-grid">
+                <div class="member">
+                    <div class="member-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="290" height="340" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
+                    </div>
+                    <h4>Marcus Apti</h4>
+                    <span>Principal Architect</span>
+                </div>
+                <div class="member">
+                    <div class="member-img">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="290" height="340" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
+                    </div>
+                    <h4>Sarah Chen</h4>
+                    <span>Head of Sustainability</span>
+                </div>
+                <div class="member">
+                    <div class="member-img">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="290" height="340" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
+                    </div>
+                    <h4>Julian Voss</h4>
+                    <span>Director of Interiors</span>
+                </div>
+                <div class="member">
+                    <div class="member-img">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="290" height="340" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+</svg>
+                    </div>
+                    <h4>Elena Rossi</h4>
+                    <span>BIM Specialist</span>
+                </div>
+            </div>
+        </div>
+    </section>
+<section class="container design-lab">
+        <div class="lab-text">
+            <h2 style="font-weight: 300; margin-bottom: 20px;">The Design Lab</h2>
+            <p style="color: #666; margin-bottom: 20px;">We don't just draw; we experiment. Our in-house lab focuses on material science, testing the thermal properties of recycled polymers and the structural integrity of 3D-printed concrete.</p>
+            <div class="lab-stats">
+                <div class="stat-item">
+                    <h2>14+</h2>
+                    <p>Patented Details</p>
+                </div>
+                <div class="stat-item">
+                    <h2>200+</h2>
+                    <p>Physical Models/Yr</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-img" style="height: 400px;">
+            <img src="imgs1.jpg" alt="Architectural Model">
+        </div>
+    </section>
+
+    <section class="stewardship">
+        <div class="container">
+            <div class="steward-content">
+                <h2 style="font-weight: 300; color: var(--accent);">Environmental Stewardship</h2>
+                <p style="margin-top: 20px; color: #ccc;">Architecture is a permanent footprint. We ensure ours is as light as possible. Every Apti project begins with a carbon-lifecycle analysis, prioritizing local sourcing and regenerative energy systems.</p>
+                
+                <div class="certification-logos">
+                    <span>LEED PLATINUM</span>
+                    <span>BREEAM EXCELLENT</span>
+                    <span>WELL GOLD</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container awards-section">
+        <h2 style="font-weight: 300;">Recognition</h2>
+        <table class="awards-table">
+            <tr>
+                <td class="award-year">2025</td>
+                <td class="award-name">AIA Innovation Award</td>
+                <td class="award-project"><a href="award1.html">Vertical Forest HQ</a></td>
+            </tr>
+            <tr>
+                <td class="award-year">2023</td>
+                <td class="award-name">Pritzker Shortlist</td>
+                <td class="award-project"><a href="award2.html">Studio Excellence</a></td>
+            </tr>
+            <tr>
+                <td class="award-year">2021</td>
+                <td class="award-name">Urban Design Medal</td>
+                <td class="award-project"><a href="award3.html">Brooklyn Commons</a></td>
+            </tr>
+            <tr>
+                <td class="award-year">2019</td>
+                <td class="award-name">Sustainable Practice Prize</td>
+                <td class="award-project"><a href="award4.html">Net-Zero Housing</a></td>
+            </tr>
+        </table>
+    </section>
+    <footer class="footer">
+        <p>&copy; 2026 Apti Architecture Studio. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

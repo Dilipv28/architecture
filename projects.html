@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Apti Reality Architecture</title>
+    <style>
+        :root {
+            --primary: #1e90ff; /* DodgerBlue */
+            --dark: #121212;
+            --light: #f8f9fa;
+            --grey: #888;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            padding-top: 80px; /* Offset for fixed navbar */
+        }
+
+        
+        /* Navbar - Fixed for better UX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color:dodgerblue;
+            font-weight:bold;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: dodgerblue;
+        }
+
+        /* --- Header & Filters --- */
+        .container {
+            width: 90%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .projects-header {
+            text-align: center;
+            padding: 100px 0 60px;
+        }
+
+        .projects-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 200;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .projects-header p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--grey);
+            font-size: 1.1rem;
+        }
+
+        .filter-container {
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #eee;
+            padding: 12px 28px;
+            cursor: pointer;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--grey);
+            transition: var(--transition);
+            border-radius: 50px;
+        }
+
+        .filter-btn.active {
+            background: var(--dark);
+            color: white;
+            border-color: var(--dark);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* --- Project Grid --- */
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 30px;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card {
+            background: white;
+            transition: var(--transition);
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card.hidden {
+            display: none;
+        }
+
+        .img-wrapper {
+            position: relative;
+            overflow: hidden;
+            height: 450px;
+            background: #f0f0f0;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-info {
+            padding: 30px 10px;
+        }
+
+        .project-info span {
+            font-size: 11px;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+        }
+
+        .project-info h3 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-weight: 400;
+        }
+
+        .project-info p {
+            font-size: 0.95rem;
+            color: var(--grey);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--dark);
+            color: #fff;
+            padding: 120px 0 60px;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-weight: 200;
+        }
+
+        .btn-contact {
+            display: inline-block;
+            padding: 18px 45px;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: #fff;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 3px;
+        }
+
+        .btn-contact:hover {
+            background: #fff;
+            color: var(--dark);
+            border-color: #fff;
+        }
+
+        .footer-bottom {
+            margin-top: 80px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 40px;
+            font-size: 11px;
+            color: #555;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar { height: auto; padding: 20px; flex-direction: column; gap: 15px; }
+            .nav-links { gap: 1rem; }
+            .project-gallery { grid-template-columns: 1fr; }
+            .img-wrapper { height: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-container">
+        <img src="logo.png" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black">reality</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="architecture.html" >Home</a>
+            <a href="projects.html"class="active">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="feedback.html">Feedback</a>
+        </div>
+    </nav>
+    <div class="container">
+        <section class="projects-section">
+            <div class="projects-header">
+                <h1>Selected Works</h1>
+                <p>Architectural excellence through sustainable design and spatial innovation. Discover our latest global landmarks.</p>
+            </div>
+
+            <div class="filter-container">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="residential">Residential</button>
+                <button class="filter-btn" data-filter="commercial">Commercial</button>
+                <button class="filter-btn" data-filter="sustainable">Sustainable</button>
+                <button class="filter-btn" data-filter="public">Public</button>
+            </div>
+
+            <div class="project-gallery" id="gallery">
+                <div class="project-card" data-category="residential">
+                    <div class="img-wrapper">
+                        <img src="img4.jpg" alt="Urban Oasis">
+                    </div>
+                    <div class="project-info">
+                        <span>Residential</span>
+                        <h3>Urban Oasis</h3>
+                        <p>A vertical garden residence focusing on air quality and natural light.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="commercial">
+                    <div class="img-wrapper">
+                        <img src="img5.jpg " alt="The Monolith Tower">
+                    </div>
+                    <div class="project-info">
+                        <span>Commercial</span>
+                        <h3>The Monolith Tower</h3>
+                        <p>A 60-story glass structure featuring an innovative "breathing" facade.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="sustainable">
+                    <div class="img-wrapper">
+                        <img src="img6.jpg" alt="Eco Pavilion">
+                    </div>
+                    <div class="project-info">
+                        <span>Sustainable</span>
+                        <h3>Eco Pavilion</h3>
+                        <p>Built entirely from recycled timber and powered by carbon-neutral solar energy.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="residential">
+                    <div class="img-wrapper">
+                        <img src="img7.jpg" alt="The Nordic Villa">
+                    </div>
+                    <div class="project-info">
+                        <span>Residential</span>
+                        <h3>The Nordic Villa</h3>
+                        <p>Minimalist lakeside home designed for extreme climates and panoramic views.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="commercial">
+                    <div class="img-wrapper">
+                        <img src="img8.jpg" alt="Creative Warehouse">
+                    </div>
+                    <div class="project-info">
+                        <span>Commercial</span>
+                        <h3>Creative Warehouse</h3>
+                        <p>Industrial brickworks converted into a high-tech office ecosystem.</p>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="public">
+                    <div class="img-wrapper">
+                        <img src="img9.jpg" alt="Modern Art Wing">
+                    </div>
+                    <div class="project-info">
+                        <span>Public</span>
+                        <h3>Modern Art Wing</h3>
+                        <p>A geometric museum extension redefining public interaction with art.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h2>Let's build the future.</h2>
+            <p>Now accepting commissions for 2026-2027 worldwide.</p>
+            <a href="contact.html" class="btn-contact">Inquire Project</a>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 APTI REALITY ARCHITECTURE STUDIO. ALL RIGHTS RESERVED.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Professional Filtering Logic
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hidden');
+                        // Small timeout for entry animation
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 100);
+                    } else {
+                        card.style.opacity = '0';
+                        card.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            card.classList.add('hidden');
+                        }, 400);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

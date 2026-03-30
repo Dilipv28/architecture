@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Brooklyn Commons | Studio Excellence</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: #fff; color: #1a1a1a; }
+        
+        .project-hero {
+            height: 80vh;
+            display: flex;
+            align-items: flex-end;
+            padding: 60px 5%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent), 
+                        url('https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+        }
+
+        .hero-meta { border-left: 3px solid dodgerblue; padding-left: 25px; }
+        .hero-meta h1 { font-size: 4rem; font-weight: 300; letter-spacing: -1px; }
+        .hero-meta p { text-transform: uppercase; letter-spacing: 3px; font-size: 0.9rem; color: #bbb; }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            padding: 100px 10%;
+            align-items: start;
+        }
+
+        .award-sidebar {
+            background: #f9f9f9;
+            padding: 50px;
+            border-radius: 4px;
+        }
+
+        .award-tag {
+            background: #1a1a1a;
+            color: white;
+            padding: 5px 15px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .award-sidebar h2 { margin: 20px 0; font-size: 1.8rem; font-weight: 400; }
+        .description p { font-size: 1.2rem; line-height: 1.8; color: #444; margin-bottom: 30px; }
+
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; gap: 50px; }
+            .hero-meta h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <section class="project-hero">
+        <div class="hero-meta">
+            <p>Brooklyn, New York</p>
+            <h1>Brooklyn Commons</h1>
+        </div>
+    </section>
+
+    <section class="content-grid">
+        <div class="description">
+            <p>Brooklyn Commons represents a radical shift in urban commercial planning. Spanning six city blocks, the project bridges the gap between private enterprise and public utility.</p>
+            <p>Our approach utilized "Tactical Urbanism"—creating fluid transitions between indoor lobbies and outdoor plazas, encouraging a 24/7 ecosystem of activity.</p>
+        </div>
+        <div class="award-sidebar">
+            <span class="award-tag">AIA Honor Award</span>
+            <h2>Excellence in Urban Design</h2>
+            <p style="color:#777; font-style: italic;">"A masterclass in how modern architecture can serve as a catalyst for community restoration without sacrificing commercial viability."</p>
+            <hr style="margin: 30px 0; border: 0; border-top: 1px solid #ddd;">
+            <p><strong>Year:</strong> 2026</p>
+            <p><strong>Client:</strong> Brooklyn Dev Group</p>
+        </div>
+    </section>
+</body>
+</html>

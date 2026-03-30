@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Apti Architecture</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --accent: dodgerblue;
+            --bg-light: #f9f9f9;
+            --text-muted: #888;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        body { background-color: #fff; color: var(--primary); line-height: 1.6; }
+        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+
+       /* Navbar - Fixed for better UX */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            color:dodgerblue;
+            font-weight:bold;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+     
+        .nav-links a:hover, .nav-links a.active {
+            color: dodgerblue;
+        }
+
+        /* Header */
+        .contact-header { padding: 150px 0 60px; text-align: center; }
+        .contact-header h1 { font-size: 3.5rem; font-weight: 300; margin-bottom: 10px; }
+
+        /* Main Contact Grid */
+        .contact-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; margin-bottom: 80px; }
+
+        /* Form Styling */
+        .contact-form { display: flex; flex-direction: column; gap: 20px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: bold; }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 15px; border: 1px solid #eee; background: var(--bg-light); font-size: 15px; border-radius: 2px; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--accent); background: #fff; }
+
+        .submit-btn {
+            background: var(--primary); color: #fff; padding: 20px; border: none; text-transform: uppercase;
+            letter-spacing: 2px; cursor: pointer; transition: 0.4s; font-weight: bold; margin-top: 10px;
+        }
+        .submit-btn:hover { background: var(--accent); transform: translateY(-2px); }
+
+        /* Sidebar */
+        .contact-info { display: flex; flex-direction: column; gap: 40px; }
+        .info-block h3 { font-size: 1rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .info-block p { color: #666; font-size: 0.95rem; }
+        .info-block a { color: var(--accent); text-decoration: none; }
+        .map-placeholder { width: 400px; height: 300px; background: #eee; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #aaa; letter-spacing: 2px; }
+
+        /* Inquiry Guide (Full Width) */
+        .inquiry-guide { background: var(--bg-light); padding: 80px 0; margin: 60px 0; }
+        .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-top: 40px; }
+        .guide-item h4 { font-size: 0.85rem; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+        .guide-item p { font-size: 0.85rem; color: #777; }
+
+        /* Studio Gallery */
+        .location-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 80px 0; }
+        .loc-img { height: 300px; background: #eee; overflow: hidden; }
+        .loc-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .loc-img:hover img { filter: grayscale(0%); transform: scale(1.05); }
+
+        /* Social Connect */
+        .social-connect { text-align: center; padding: 80px 0; border-top: 1px solid #eee; }
+        .social-links { margin-top: 20px; }
+        .social-links a { margin: 0 15px; text-decoration: none; color: var(--primary); font-weight: bold; font-size: 13px; text-transform: uppercase; transition: 0.3s; }
+        .social-links a:hover { color: var(--accent); }
+
+        .footer { padding: 40px 0; border-top: 1px solid #eee; text-align: center; font-size: 0.75rem; color: var(--text-muted); }
+
+        @media (max-width: 850px) {
+            .contact-grid, .form-row { grid-template-columns: 1fr; }
+            .location-gallery { grid-template-columns: 1fr; }
+            .contact-header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+     <nav class="navbar">
+        <div class="logo-container">
+        <img src="logo.png" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black"> reality</span></div>
+        </div>
+        <div class="nav-links">
+            <a href="architecture.html" >Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="contact.html"class="active">Contact</a>
+            <a href="feedback.html">Feedback</a>
+         </div>
+    </nav>
+        <header class="contact-header">
+            <h1>Start a Project</h1>
+            <p style="color: var(--text-muted);">Collaborate with our studio to create something exceptional.</p>
+        </header>
+
+        <main class="contact-grid">
+            <section>
+                <form class="contact-form" id="mainContactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="e.g. Alex Rivera" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="alex@company.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Project Type</label>
+                            <select>
+                                <option>Residential</option>
+                                <option>Commercial</option>
+                                <option>Sustainable Audit</option>
+                                <option>Interior Design</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estimated Budget</label>
+                            <input type="text" placeholder="$100k - $500k">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea rows="6" placeholder="Tell us about your vision, site location, and goals..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Submit Inquiry</button>
+                </form>
+            </section>
+
+            <aside class="contact-info">
+                <div class="info-block">
+                    <h3>Studio HQ</h3>
+                    <p>123 Design District, Suite 400<br>New York, NY 10001</p>
+                </div>
+                <div class="info-block">
+                    <h3>New Business</h3>
+                    <p>T: +1 (212) 555-0198<br>E: <a href="mailto:hello@apti-arch.com">hello@apti.com</a></p>
+                </div>
+                <div class="map-placeholder">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d242.99091489343016!2d77.54292963904483!3d12.981147683063302!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xad7616edc27f7a97%3A0x882fb7fe9838cb9a!2sApti%20Business%20Solutions!5e0!3m2!1sen!2sin!4v1774861640526!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <section class="inquiry-guide">
+        <div class="container">
+            <h2 style="font-weight: 300;">The Briefing Guide</h2>
+            <p style="color: #666;">Sharing these details early helps us prepare for our first meeting.</p>
+            <div class="guide-grid">
+                <div class="guide-item">
+                    <h4>01. Site Context</h4>
+                    <p>Zoning, topography, and orientation play a huge role in our first sketches.</p>
+                </div>
+                <div class="guide-item">
+                    <h4>02. Timeline</h4>
+                    <p>Are we looking at a fast-track build or a multi-year phased development?</p>
+                </div>
+                <div class="guide-item">
+                    <h4>03. Sustainability</h4>
+                    <p>Tell us if you are aiming for LEED certification or net-zero goals.</p>
+                </div>
+                <div class="guide-item">
+                    <h4>04. Aesthetics</h4>
+                    <p>Provide 2-3 keywords that describe your dream atmosphere (e.g., Brutalist, Warm, Minimal).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <h2 style="font-weight: 300; text-align: center;">Inside the Studio</h2>
+        <section class="location-gallery">
+            <div class="loc-img"><img src="studio1.jpg" alt="Office"></div>
+            <div class="loc-img"><img src="studio2.jpg" alt="Process"></div>
+            <div class="loc-img"><img src="studio3.jpg" alt="Meeting"></div>
+        </section>
+    </div>
+
+    <section class="social-connect">
+        <div class="container">
+            <h3>Follow the Process</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/accounts/login/" target="_blank">Instagram</a>
+                <a href="https://www.linkedin.com/company/login/" target="_blank">LinkedIn</a>
+                <a href="https://www.behance.net/login/" target="_blank">Behance</a>
+                <a href="https://www.pinterest.com/accounts/login/" target="_blank">Pinterest</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Apti Architecture Studio. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Simple Interaction for Form
+        document.getElementById('mainContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your inquiry has been sent. A member of our design team will contact you within 48 hours.');
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
