@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ArchiVest Global</title>
+    <style>
+        :root {
+            --primary: #c5a059;
+            --secondary: #a88746;
+            --dark: #121212;
+            --dark-soft: #1e1e1e;
+            --white: #ffffff;
+            --gray-light: #f4f7f6;
+            --text-muted: #888;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background-color: var(--white); color: var(--dark); line-height: 1.6; }
+
+        .container { max-width: 1200px; margin: auto; padding: 100px 20px; }
+
+        /* --- Header Styling --- */
+        .header-box { text-align: center; margin-bottom: 80px; }
+        .header-box h1 { font-size: 3rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 15px; }
+        .header-box h1 span { color: var(--primary); }
+        .header-box p { color: var(--text-muted); max-width: 600px; margin: auto; font-size: 1.1rem; }
+
+        /* --- Navbar Styling --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo {
+            color: dodgerblue;
+            font-weight: bold;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: dodgerblue; }
+
+
+        /* --- Contact Grid --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 0;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* Sidebar */
+        .contact-sidebar {
+            background: var(--dark);
+            padding: 60px;
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .contact-sidebar::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 150px; height: 150px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .sidebar-title { font-size: 1.8rem; margin-bottom: 30px; line-height: 1.2; }
+        
+        .contact-method { display: flex; align-items: center; margin-bottom: 40px; text-decoration: none; color: inherit; transition: var(--transition); }
+        .contact-method:hover { transform: translateX(10px); color: var(--primary); }
+        
+        .method-icon {
+            width: 50px; height: 50px;
+            background: var(--dark-soft);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 20px; font-size: 1.2rem;
+        }
+
+        .method-details h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 4px; }
+        .method-details p { font-size: 1rem; opacity: 0.8; }
+
+        /* Form Area */
+        .contact-form-area { background: var(--white); padding: 60px; }
+        
+        .form-header { margin-bottom: 40px; }
+        .form-header h3 { font-size: 1.5rem; margin-bottom: 10px; }
+
+        .input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px; }
+        .input-group { display: flex; flex-direction: column; margin-bottom: 25px; }
+        .input-group label { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .input-group input, .input-group select, .input-group textarea {
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--gray-light);
+        }
+
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--white);
+            box-shadow: 0 10px 20px rgba(197, 160, 89, 0.1);
+        }
+
+        .submit-btn {
+            background: var(--dark);
+            color: var(--white);
+            padding: 20px 40px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(197, 160, 89, 0.3);
+        }
+
+        /* --- FAQ Section --- */
+        .faq-section { background: var(--gray-light); padding: 100px 20px; }
+        .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 1200px; margin: auto; }
+        .faq-item { background: var(--white); padding: 30px; border-radius: 12px; }
+        .faq-item h4 { margin-bottom: 15px; color: var(--secondary); }
+        .faq-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- Footer Quick Connect --- */
+        .quick-connect { text-align: center; padding: 60px 0; border-top: 1px solid #eee; }
+        .social-circle {
+            display: inline-flex; gap: 15px; margin-top: 20px;
+        }
+        .social-circle a {
+            width: 45px; height: 45px; border-radius: 50%;
+            background: var(--gray-light); color: var(--dark);
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; transition: var(--transition);
+        }
+        .social-circle a:hover { background: var(--primary); color: white; transform: rotate(360deg); }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-grid { grid-template-columns: 1fr; }
+            .input-row { grid-template-columns: 1fr; }
+            .faq-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+     <header>
+        <nav class="navbar">
+        <div class="logo-container">
+            <img src="Logo.jpg" alt="Arcane Logo" width="90px">
+            <div class="logo">Apti <span style="color:black">reality</span></div>
+        </div>
+            <div class="nav-links">
+                <a href="service.html">Services</a>
+                <a href="#evaluation">Evaluation</a>
+                <a href="#plots">Inventory</a>
+                <a href="#partners">Partners</a>
+                <a href="contact1.html">contact</a>
+                <a href="feedback1.html">feedback</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container">
+        <div class="header-box">
+            <h1>Let's Build <span>The Future.</span></h1>
+            <p>From land acquisition and legal vetting to architectural design, our ecosystem is ready to bring your vision to life.</p>
+        </div>
+
+        <div class="contact-grid">
+            <aside class="contact-sidebar">
+                <div>
+                    <h3 class="sidebar-title">Global <br>Headquarters</h3>
+                    
+                    <a href="https://maps.google.com" class="contact-method">
+                        <div class="method-icon">📍</div>
+                        <div class="method-details">
+                            <h4>Visit Us</h4>
+                            <p>25/1-6, 9th Main Rd, Dasarahalli Main Road, <br> Agrahara, Bengaluru, Karnataka 560079, India</p>
+                        </div>
+                    </a> 
+
+                    <a href="tel:+91-9611758973" class="contact-method">
+                        <div class="method-icon">📞</div>
+                        <div class="method-details">
+                            <h4>Direct Line</h4>
+                            <p>+91-9611758973</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:aptirelity@email.com" class="contact-method">
+                        <div class="method-icon">✉️</div>
+                        <div class="method-details">
+                            <h4>Email Strategy</h4>
+                            <p>aptireality@email.com</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div style="margin-top: auto;">
+                    <p style="font-size: 0.8rem; opacity: 0.5;">Average Response Time: <br><strong>< 2 Business Hours</strong></p>
+                </div>
+            </aside>
+
+            <main class="contact-form-area">
+                <div class="form-header">
+                    <h3>Project Inquiry Form</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Fill out the form and a senior consultant will be assigned to your case.</p>
+                </div>
+
+                <form>
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Johnathan Doe" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="+1 (555) 000-0000" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Business Email</label>
+                        <input type="email" placeholder="john@company.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Inquiry Category</label>
+                        <select required>
+                            <option value="" disabled selected>Please select your requirement</option>
+                            <option>Commercial Spot Acquisition</option>
+                            <option>Farmland/Site Evaluation</option>
+                            <option>Legal Vetting & Purchase Support</option>
+                            <option>Architecture & Construction</option>
+                            <option>Channel Partner Onboarding</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Estimated Project Scale</label>
+                        <select>
+                            <option>Residential (Personal)</option>
+                            <option>Commercial (Retail/Office)</option>
+                            <option>Industrial/Large Scale</option>
+                            <option>Governmental/Urban Planning</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Message / Specific Requirements</label>
+                        <textarea rows="4" placeholder="Briefly describe your project or the plot location..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </main>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container" style="padding: 0 20px;">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 50px;">Common <span>Queries</span></h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>Do you provide end-to-end site visits?</h4>
+                    <p>Yes. We organize physical site visits including technical surveys for topography, soil testing, and local neighborhood analysis before you sign any documents.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How does legal vetting work for plots?</h4>
+                    <p>Our in-house legal team performs a 30-year title search, verifies EC (Encumbrance Certificate), and ensures the land is free from any litigation or government acquisition notices.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Are your construction services customizable?</h4>
+                    <p>Absolutely. Our architectural wing provides bespoke 3D designs tailored to your budget, ensuring modern aesthetics with maximum floor area utilization.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do I join as a Digital Promoter?</h4>
+                    <p>Select 'Channel Partner Onboarding' in the contact form. Our digital marketing lead will contact you to discuss our tiered commission structures and marketing toolkits.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quick-connect">
+        <p>Follow our latest projects & market updates</p>
+        <div class="social-circle">
+            <a href="https://www.facebook.com">FB</a>
+            <a href="https://www.linkedin.com">IN</a>
+            <a href="https://twitter.com">TW</a>
+            <a href="https://www.instagram.com">LI</a>
+        </div>
+    </section>
+
+    <div class="map-container">
+       <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d242.99091489343016!2d77.54292963904483!3d12.981147683063302!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xad7616edc27f7a97%3A0x882fb7fe9838cb9a!2sApti%20Business%20Solutions!5e0!3m2!1sen!2sin!4v1774861640526!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>        
+                </div>
+
+</body>
+</html>

@@ -229,13 +229,17 @@
             background: dodgerblue;
         }
 
-        .footer {
-            padding: 50px 0;
+       footer {
+            padding: 50px 5%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color:  #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #888;
         }
+
 
         @media (max-width: 768px) {
             .navbar { flex-direction: column; gap: 20px; }
@@ -247,7 +251,7 @@
 
        <nav class="navbar">
         <div class="logo-container">
-        <img src="logo.png" alt="Arcane Logo" width="90px">
+        <img src="Logo.jpg" alt="Arcane Logo" width="90px">
             <div class="logo">Apti <span style="color:black">reality</span></div>
         </div>
         <div class="nav-links">
@@ -443,16 +447,18 @@
         <div class="container">
             <h2 style="font-weight: 300; margin-bottom: 20px;">Ready to Start Your Journey?</h2>
             <p style="color: #888; margin-bottom: 30px;">Book a free 30-minute introductory consultation with our design team.</p>
-            <a href="contact.html" class="btn">Inquire Now</a>  
+            <a href="service.html" class="btn">Inquire Now</a>  
         </div>
     </section>
     
-
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Apti Architecture Studio. All rights reserved.</p>
+<footer>
+        <div>&copy; 2024 Apti Reality. All rights reserved.</div>
+        <div>Designed by Apti Reality | Developed by Arcane Web Solutions</div>
+        <div>
+             <a href="https://www.linkedin.com/company/login/" target="_blank" style="color: var(--text-muted); text-decoration: none;">LinkedIn</a> | 
+            <a href="https://www.instagram.com/accounts/login/" target="_blank" style="color: var(--text-muted); text-decoration: none;">Instagram</a> | 
+            <a href="https://www.facebook.com/accounts/login/" target="_blank" style="color: var(--text-muted); text-decoration: none;">Facebook</a>
         </div>
     </footer>
-
 </body>
 </html> 

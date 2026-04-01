@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Feedback | Apti Reality</title>
+    <style>
+        :root {
+            --primary: #c5a059;
+            --dark: #121212;
+            --gold-light: #f9f6f0;
+            --white: #ffffff;
+            --border: #e8e8e8;
+            --text-main: #2d2d2d;
+            --text-muted: #666;
+            --success: #27ae60;
+            --nav-blue: #0080ff; /* DodgerBlue */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--white); color: var(--text-main); padding-top: 80px; /* Space for fixed navbar */ }
+
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+        /* --- Navbar Styling --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 5%;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo {
+            color: dodgerblue;
+            font-weight: bold;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            text-decoration: none;
+            color: #1a1a1a;
+            font-weight: 500;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active { color: dodgerblue; }
+
+
+        /* --- Contact Grid --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 0;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* --- Header --- */
+        .feedback-header { text-align: center; margin-bottom: 60px; }
+        .feedback-header h1 { font-size: 2.8rem; letter-spacing: -1px; margin-bottom: 15px; }
+        .feedback-header h1 span { color: var(--primary); }
+        .feedback-header p { color: var(--text-muted); font-size: 1.1rem; max-width: 700px; margin: auto; }
+
+        /* --- Testimonials --- */
+        .testimonial-preview { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin-bottom: 80px;
+        }
+        .t-card { 
+            background: var(--gold-light); 
+            padding: 40px; 
+            border-radius: 8px; 
+            position: relative;
+            border-bottom: 3px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        .t-card:hover { transform: translateY(-5px); }
+        .t-card::before { content: "“"; position: absolute; top: 10px; left: 20px; font-size: 5rem; color: rgba(197,160,89,0.2); }
+        .t-card p { font-style: italic; margin-bottom: 20px; color: var(--text-main); line-height: 1.8; position: relative; }
+        .t-author { font-weight: 700; color: var(--dark); display: block; font-size: 0.9rem; text-transform: uppercase; }
+        .t-service { color: var(--primary); font-size: 0.8rem; font-weight: 600; }
+
+        /* --- Feedback Main --- */
+        .feedback-main { 
+            display: grid; 
+            grid-template-columns: 1.5fr 1fr; 
+            gap: 60px; 
+            background: var(--white);
+            border-top: 1px solid var(--border);
+            padding-top: 80px;
+        }
+
+        .rating-box { margin-bottom: 30px; }
+        .rating-label { display: block; font-weight: 700; margin-bottom: 12px; font-size: 0.9rem; text-transform: uppercase; color: var(--dark); }
+        
+        .rating-options { display: flex; gap: 10px; }
+        .rating-btn { 
+            flex: 1; 
+            padding: 12px; 
+            border: 1px solid var(--border); 
+            background: var(--white); 
+            cursor: pointer; 
+            text-align: center; 
+            transition: 0.3s;
+            font-weight: 600;
+            border-radius: 4px;
+        }
+        .rating-btn:hover { background: var(--gold-light); border-color: var(--primary); }
+        .rating-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .form-field { margin-bottom: 25px; }
+        .form-field label { display: block; font-weight: 700; margin-bottom: 8px; font-size: 0.85rem; }
+        .form-field input, .form-field textarea {
+            width: 100%; padding: 15px; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;
+        }
+        .form-field input:focus, .form-field textarea:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.1); }
+
+        .submit-feedback {
+            background: var(--dark); color: white; padding: 20px 40px; border: none; width: 100%;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s;
+            border-radius: 4px;
+        }
+        .submit-feedback:hover { background: var(--primary); transform: translateY(-2px); }
+
+        /* --- Sidebar Stats --- */
+        .feedback-stats { background: var(--dark); color: white; padding: 50px; border-radius: 12px; align-self: start; }
+        .stat-circle { 
+            width: 100px; height: 100px; border: 4px solid var(--primary); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 2.2rem; font-weight: 800;
+            margin-bottom: 20px; color: var(--primary);
+        }
+        .feedback-stats h3 { margin-bottom: 15px; color: var(--primary); }
+        .feedback-stats p { font-size: 0.9rem; opacity: 0.7; margin-bottom: 30px; line-height: 1.6; }
+        .metric { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+
+        @media (max-width: 850px) {
+            .feedback-main { grid-template-columns: 1fr; }
+            .navbar { padding: 10px 20px; }
+            .nav-links { display: none; } /* Simplified for mobile */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo-container">
+                <img src="Logo.jpg" alt="Apti Logo" width="50px" style="border-radius: 5px;">
+                <div class="logo">Apti <span style="color:black">Reality</span></div>
+            </div>
+            <div class="nav-links">
+                <a href="service.html">Services</a>
+                <a href="#evaluation">Evaluation</a>
+                <a href="#plots">Inventory</a>
+                <a href="#partners">Partners</a>
+                <a href="contact1.html">Contact</a>
+                <a href="feedback1.html" class="active">Feedback</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="container">
+        <div class="feedback-header">
+            <h1>Client <span>Experiences</span></h1>
+            <p><em>Your journey with Apti Reality doesn't end at the sale. We value your honest feedback to refine our architecture and property services.</em></p>
+        </div>
+
+        <div class="testimonial-preview">
+            <div class="t-card">
+                <p>"The legal vetting process was incredibly thorough. I felt 100% secure purchasing my first commercial plot through them."</p>
+                <span class="t-author">Marcus Sterling</span>
+                <span class="t-service">Commercial Acquisition</span>
+            </div>
+            <div class="t-card">
+                <p>"Their architects translated my vision into a 3D reality that exceeded my budget expectations. Truly professional."</p>
+                <span class="t-author">Elena Rodriguez</span>
+                <span class="t-service">Custom Villa Construction</span>
+            </div>
+            <div class="t-card">
+                <p>"As a Channel Partner, the digital marketing support provided by the promoter team helped me close 3 deals in a month."</p>
+                <span class="t-author">David Chen</span>
+                <span class="t-service">Partner Sales</span>
+            </div>
+        </div>
+
+        <div class="feedback-main">
+            <div class="feedback-form">
+                <h2 style="margin-bottom: 30px;">Share Your Experience</h2>
+                
+                <form action="#">
+                    <div class="form-field">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Project / Plot ID (Optional)</label>
+                        <input type="text" placeholder="e.g. AV-9921">
+                    </div>
+
+                    <div class="rating-box">
+                        <span class="rating-label">Rate our Architecture & Design</span>
+                        <div class="rating-options">
+                            <div class="rating-btn">1</div>
+                            <div class="rating-btn">2</div>
+                            <div class="rating-btn">3</div>
+                            <div class="rating-btn">4</div>
+                            <div class="rating-btn active">5</div>
+                        </div>
+                    </div>
+
+                    <div class="rating-box">
+                        <span class="rating-label">Rate our Legal & Support Services</span>
+                        <div class="rating-options">
+                            <div class="rating-btn">1</div>
+                            <div class="rating-btn">2</div>
+                            <div class="rating-btn">3</div>
+                            <div class="rating-btn active">4</div>
+                            <div class="rating-btn">5</div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Detailed Review</label>
+                        <textarea rows="6" placeholder="What did we do well? How can we improve?"></textarea>
+                    </div>
+
+                    <div class="form-field" style="display: flex; align-items: center; gap: 10px;">
+                        <input type="checkbox" id="consent" style="width: auto; cursor: pointer;">
+                        <label for="consent" style="margin-bottom: 0; font-weight: 500; cursor: pointer;">I allow Apti Reality to feature this review on the website.</label>
+                    </div>
+
+                    <button type="submit" class="submit-feedback">Publish Review</button>
+                </form>
+            </div>
+
+            <div class="feedback-stats">
+                <div class="stat-circle">4.9</div>
+                <h3>Average Satisfaction</h3>
+                <p>Based on over 1,250+ client interactions across construction and land sales in 2025-2026.</p>
+                
+                <div class="metric">
+                    <span>Design Quality</span>
+                    <span style="color: var(--primary);">98%</span>
+                </div>
+                <div class="metric">
+                    <span>Legal Clarity</span>
+                    <span style="color: var(--primary);">95%</span>
+                </div>
+                <div class="metric">
+                    <span>Site Visit Punctuality</span>
+                    <span style="color: var(--primary);">92%</span>
+                </div>
+                <div class="metric">
+                    <span>Digital Promoter ROI</span>
+                    <span style="color: var(--primary);">97%</span>
+                </div>
+
+                <div style="margin-top: 40px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                    <h4 style="font-size: 0.9rem; margin-bottom: 10px; color: var(--primary);">Urgent Issue?</h4>
+                    <p style="font-size: 0.8rem; margin-bottom: 0;">If you have an immediate concern regarding a site service, please contact our 24/7 Priority Support line.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.9rem;">
+        &copy; 2026 Apti Reality Global. All Feedback is verified via secured transactions.
+    </footer>
+
+</body>
+</html>

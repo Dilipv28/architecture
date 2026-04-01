@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arcane | Modern Architecture</title>
+    <title>Apti Reality | Avant-Garde Architecture</title>
     <style>
-        /* General Reset & Smooth Scroll */
+        :root {
+            --primary: #1a1a1a;
+            --accent: #007bff; 
+            --bg-light: #ffffff;
+            --bg-alt: #fcfcfc;
+            --text-muted: #757575;
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--primary); line-height: 1.7; overflow-x: hidden; }
 
-        body {
-            background-color: #f9f9f9;
-            color: #1a1a1a;
-            line-height: 1.6;
-        }
-
-        /* Navbar - Fixed for better UX */
+        /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -32,32 +33,22 @@
             position: fixed;
             top: 0;
             width: 100%;
-         background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
+            background-image: radial-gradient( circle 476px at 54.8% 51.5%,  rgba(168,229,253,1) 0%, rgba(244,244,254,1) 42.3%, rgba(244,244,254,1) 100.2% );
             backdrop-filter: blur(10px);
             z-index: 1000;
             border-bottom: 1px solid #eee;
         }
 
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
+        .logo-container { display: flex; align-items: center; gap: 15px; }
         .logo {
-            color:dodgerblue;
-            font-weight:bold;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            color: dodgerblue;
+            font-weight: bold;
             font-size: 1.8rem;
             letter-spacing: 4px;
             text-transform: uppercase;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
+        .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
             text-decoration: none;
             color: #1a1a1a;
@@ -67,182 +58,194 @@
             letter-spacing: 1px;
             transition: 0.3s;
         }
-
-        .nav-links a:hover, .nav-links a.active {
-            color: dodgerblue;
-        }
+        .nav-links a:hover, .nav-links a.active { color: dodgerblue; }
 
         /* Hero Section */
         .hero {
             height: 100vh;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
             padding: 0 5%;
-            background: #fff;
-            padding-top: 80px;
+            background: var(--bg-light);
+        }
+
+        .hero-content { padding-right: 10%; }
+        .hero-content span { 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-size: 0.8rem; 
+            color: var(--accent);
+            display: block;
+            margin-bottom: 1rem;
         }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 5rem);
-            line-height: 1;
-            margin-bottom: 1.5rem;
-            font-weight: 400;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            font-weight: 300;
+            margin-bottom: 2rem;
         }
 
-        .hero-content span {
-            color: #888;
-        }
-       .hero-image {
-            flex: 1;
-            height: 70vh;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-        }
-
+        .hero-image { height: 80vh; overflow: hidden; border-radius: 2px; }
         .hero-image img {
-            width: 1000px;
-            height: 590px;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.05);
+            transition: transform 10s ease;
         }
+        .hero:hover .hero-image img { transform: scale(1.1); }
 
-        .btn {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 1rem 2.5rem;
-            background: #1a1a1a;
-            color: #fff;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #444;
-        }
-
-        /* Philosophy Section */
+        /* Philosophy Section (New) */
         .philosophy {
             padding: 120px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            text-align: center;
             background: #fff;
-            flex-wrap: wrap;
+        }
+        .philosophy blockquote {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 300;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            line-height: 1.3;
+        }
+        .philosophy hr {
+            width: 50px;
+            margin: 0 auto 30px;
+            border: none;
+            border-top: 2px solid var(--accent);
+        }
+
+        /* Expertise Section */
+        .expertise {
+            padding: 100px 5%;
+            background: var(--bg-alt);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
         }
 
-        .phil-text { flex: 1; min-width: 320px; }
-        .phil-text span { text-transform: uppercase; color: #888; font-size: 0.8rem; letter-spacing: 2px; }
-        .phil-text h2 { font-size: 2.5rem; margin: 20px 0; font-weight: 400; line-height: 1.2; }
+        .exp-card h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        .stats { display: flex; gap: 40px; flex-wrap: wrap; }
-        .stat-item strong { font-size: 2.5rem; display: block; border-bottom: 2px solid #1a1a1a; width: fit-content; }
-        .stat-item p { font-size: 0.8rem; text-transform: uppercase; margin-top: 10px; color: #666; }
+        .exp-card h3::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--accent);
+        }
+        .exp-card p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Metrics Section (New) */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            padding: 80px 5%;
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        .metric-item h4 { font-size: 2.5rem; font-weight: 300; color: var(--accent); }
+        .metric-item p { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.6; }
 
         /* Projects Grid */
-        .projects { padding: 100px 5%; }
-        .projects h2 { margin-bottom: 3rem; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; }
+        .projects { padding: 120px 5%; }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+        .section-header h2 { font-size: 2rem; font-weight: 300; text-transform: uppercase; letter-spacing: 3px; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
         }
 
+        .project-card { cursor: pointer; }
         .img-container {
             position: relative;
-            width: 100%;
-            height: 500px;
+            aspect-ratio: 16 / 10;
             overflow: hidden;
             background: #eee;
+            margin-bottom: 1.5rem;
         }
-
         .img-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: var(--transition);
+        }
+        .project-card:hover img { transform: scale(1.05); }
+
+        .project-info { display: flex; justify-content: space-between; align-items: center; }
+        .project-info h3 { font-size: 1.1rem; font-weight: 400; }
+        .project-info span { color: var(--text-muted); font-size: 0.8rem; text-transform: uppercase; }
+
+        /* Journal Section (New) */
+        .journal { padding: 100px 5%; background: var(--bg-alt); }
+        .journal-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .journal-post { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+        .journal-post span { font-size: 0.7rem; color: var(--accent); font-weight: bold; }
+        .journal-post h4 { margin: 10px 0; font-weight: 400; font-size: 1.1rem; }
+
+        /* CTA / Footer */
+        .cta-section {
+            padding: 150px 5%;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+        }
+        .cta-section h2 { font-size: 3rem; font-weight: 300; margin-bottom: 2rem; }
+
+        .btn-outline {
+            padding: 1rem 3rem;
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            display: inline-block;
         }
 
-        .project-card:hover img { transform: scale(1.1); }
-
-        .overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
+        .btn-outline:hover {
             background: white;
-            padding: 5px 15px;
+            color: var(--primary);
+        }
+
+        footer {
+            padding: 50px 5%;
+            display: flex;
+            justify-content: space-between;
             font-size: 0.7rem;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 1px;
-        }
-
-        .project-card h3 { margin-top: 1.5rem; font-weight: 500; font-size: 1.1rem; }
-
-        /* Services Section */
-        .services {
-            padding: 100px 5%;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 60px;
-            background: #1a1a1a;
-            color: #fff;
-        }
-
-        .service-box h4 { margin-bottom: 20px; font-size: 1rem; border-bottom: 1px solid #444; padding-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;}
-        .service-box p { color: #aaa; font-size: 0.9rem; font-weight: 300; }
-
-        /* Testimonial Section (New) */
-        .testimonial {
-            padding: 100px 5%;
-            text-align: center;
-            background: #f1f1f1;
-        }
-
-        .testimonial blockquote {
-            font-size: 1.8rem;
-            max-width: 800px;
-            margin: 0 auto;
-            font-style: italic;
-            color: #444;
-        }
-
-        .testimonial cite {
-            display: block;
-            margin-top: 20px;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            font-style: normal;
-            color: #888;
-        }
-
-        /* Footer */
-        footer {
-            padding: 100px 5% 50px;
-            text-align: center;
-            background: #fff;
-        }
-
-        .footer-bottom {
-            margin-top: 80px;
-            font-size: 0.7rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            border-top: 1px solid #eee;
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* Add a hamburger menu here later */
-            .philosophy { padding: 60px 5%; }
-            .hero-content h1 { font-size: 3rem; }
-            .img-container { height: 350px; }
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; height: auto; padding-top: 120px; }
+            .hero-content { margin-bottom: 4rem; padding-right: 0; }
+            .grid, .expertise, .metrics, .journal-grid { grid-template-columns: 1fr; }
+            .metrics { gap: 40px; }
         }
     </style>
 </head>
@@ -250,7 +253,7 @@
 
     <nav class="navbar">
         <div class="logo-container">
-        <img src="Logo.jpg" alt="Arcane Logo" width="90px">
+            <img src="Logo.jpg" alt="Arcane Logo" width="90px">
             <div class="logo">Apti <span style="color:black">reality</span></div>
         </div>
         <div class="nav-links">
@@ -260,91 +263,144 @@
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
             <a href="feedback.html">Feedback</a>
-        
-
         </div>
     </nav>
 
-    <header class="hero" id="home">
+    <header class="hero">
         <div class="hero-content">
-            <h1>Designing Spaces <br> <span>Defining Eras.</span></h1>
-            <p>A minimalist approach to structural integrity and aesthetic harmony.</p>
-            <a href="#projects" class="btn">View Projects</a>
+            <span>Established 2025</span>
+            <h1>We build the <br>silent dialogue between <br>light and form.</h1>
+            <p style="margin-bottom: 2rem; color: var(--text-muted);">Apti Reality is an award-winning architectural practice focused on high-end residential and cultural landmarks.</p>
+            <a href="#projects" class="btn-outline" style="border-color: var(--primary); color: var(--primary);">Explore Works</a>
         </div>
-        <div class="hero-image"><img src="im.jpg" alt="Hero Image">
-                </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070" alt="Modern Architecture">
+        </div>
     </header>
 
     <section class="philosophy">
-        <div class="phil-text">
-            <span>Our Philosophy</span>
-            <h2>Sustainability meets <br> Brutalist beauty.</h2>
-            <p>We believe that a building should not just occupy space, but converse with its environment. Our designs prioritize natural light, raw materials, and long-term ecological impact.</p>
+        <hr>
+        <blockquote>"Architecture should speak of its time and place, but yearn for timelessness."</blockquote>
+        <p style="color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem;">— Our Design Ethos</p>
+    </section>
+
+    <section class="expertise">
+        <div class="exp-card">
+            <h3>Conceptualization</h3>
+            <p>Defining the narrative of a space before the first stone is laid. We prioritize the user journey and environmental context.</p>
         </div>
-        <div class="stats">
-            <div class="stat-item"><strong>12+</strong><p>Years Experience</p></div>
-            <div class="stat-item"><strong>150+</strong><p>Projects Delivered</p></div>
-            <div class="stat-item"><strong>09</strong><p>Design Awards</p></div>
+        <div class="exp-card">
+            <h3>Materiality</h3>
+            <p>Exploring the tactile relationship between raw concrete, sustainable timber, and expansive glass structures.</p>
+        </div>
+        <div class="exp-card">
+            <h3>Execution</h3>
+            <p>Precision engineering and project management ensuring that the final build matches the original vision perfectly.</p>
+        </div>
+    </section>
+
+    <section class="metrics">
+        <div class="metric-item">
+            <h4>120+</h4>
+            <p>Completed Projects</p>
+        </div>
+        <div class="metric-item">
+            <h4>15</h4>
+            <p>Design Awards</p>
+        </div>
+        <div class="metric-item">
+            <h4>08</h4>
+            <p>Global Offices</p>
+        </div>
+        <div class="metric-item">
+            <h4>100%</h4>
+            <p>Sustainable Focus</p>
         </div>
     </section>
 
     <section id="projects" class="projects">
-        <h2>Selected Works</h2>
+        <div class="section-header">
+            <h2>Selected Works</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;"><a href="projects.html" style="color: var(--text-muted); text-decoration: none;">View All Projects</a> &rarr;</p>
+        </div>
+        
         <div class="grid">
             <div class="project-card">
                 <div class="img-container">
-                    <img src="img1.jpg" alt="Concrete Pavilion">
-                    <div class="overlay"><span>Residential</span></div>
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=2070"  alt="Villa">
                 </div>
-                <h3>The Concrete Pavilion</h3>
+                <div class="project-info">
+                    <h3>The Obsidian House</h3>
+                    <span>Residential | Zurich</span>
+                </div>
             </div>
             <div class="project-card">
                 <div class="img-container">
-                    <img src="img2.jpg" alt="Glass Residence">
-                    <div class="overlay"><span>Modernist</span></div>
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2069" alt="Office">
                 </div>
-                <h3>Glass Residence</h3>
+                <div class="project-info">
+                    <h3>Vanguard HQ</h3>
+                    <span>Commercial | London</span>
+                </div>
             </div>
             <div class="project-card">
                 <div class="img-container">
-                    <img src="img3.jpg" alt="Urban Monolith">
-                    <div class="overlay"><span>Commercial</span></div>
+                    <img src="img4.jpg" alt="Cultural">
                 </div>
-                <h3>Urban Monolith</h3>
+                <div class="project-info">
+                    <h3>Echo Museum</h3>
+                    <span>Cultural | Tokyo</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="img-container">
+                    <img src="img5.jpg" alt="Residential">
+                </div>
+                <div class="project-info">
+                    <h3>Glass Pavilion</h3>
+                    <span>Residential | Los Angeles</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonial">
-        <blockquote>"Architecture should speak of its time and place, but yearn for timelessness."</blockquote>
-        <cite>— Lead Architect, Frank K. Arcane</cite>
+    <section class="journal">
+        <div class="container">
+            <h2 style="font-weight: 300; text-transform: uppercase; letter-spacing: 3px;">The Journal</h2>
+            <div class="journal-grid">
+                <div class="journal-post">
+                    <span>March 2026</span>
+                    <h4>The Future of Minimalist Urban Living</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">How we are re-imagining small spaces in the heart of Tokyo...</p>
+                </div>
+                <div class="journal-post">
+                    <span>February 2026</span>
+                    <h4>Tactile Concrete: A New Era</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Discussing the warmth of industrial materials in residential design...</p>
+                </div>
+                <div class="journal-post">
+                    <span>January 2026</span>
+                    <h4>Sustainable Glass Solutions</h4>
+                    <p style="font-size: 0.85rem; color: var(--text-muted);">Reducing thermal gain without compromising on panoramic views...</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="service-box">
-            <h4>01. Architectural Design</h4>
-            <p>From conceptual sketches to full construction blueprints, we handle every detail with precision.</p>
-        </div>
-        <div class="service-box">
-            <h4>02. Interior Curation</h4>
-            <p>Bespoke furniture and spatial planning that complements the exterior shell and enhances livability.</p>
-        </div>
-        <div class="service-box">
-            <h4>03. Urban Planning</h4>
-            <p>Large-scale projects designed to revitalize city centers and create meaningful public spaces.</p>
-        </div>
+    <section class="cta-section">
+        <h2>Have a vision for a <br>future landmark?</h2>
+        <a href="contact.html" class="btn-outline">Start a Consultation</a>
     </section>
 
-    <footer id="contact">
-        <div class="footer-content">
-            <h2>Start a Project</h2>
-            <p>Have a vision in mind? Let's build it together.</p>
-            <a href="contact.html" class="btn">Get In Touch</a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 ARCANE Architecture Studio. All Rights Reserved.</p>
+    <footer>
+        <div>&copy; 2026 Apti Reality. All rights reserved.</div>
+        <div>Designed by Apti Reality | Developed by Arcane Web Solutions</div>
+        <div>
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">LinkedIn</a> | 
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Instagram</a> | 
+            <a href="#" style="color: var(--text-muted); text-decoration: none;">Facebook</a>
         </div>
     </footer>
-
+        
 </body>
 </html>
